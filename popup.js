@@ -2,8 +2,9 @@ import api from './api.js';
 
 const form = document.querySelector('.form');
 const textArea = document.querySelector('.textarea');
-let changeTimer = false;
 const re = /[,.!?;:()]/;
+
+let changeTimer = false;
 
 const apiRequest = (text, textArray) => {
     api.checkText(text)
