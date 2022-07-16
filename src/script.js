@@ -73,7 +73,6 @@ const getSelectedText = () => {
                 let correctText = [];
                 checkText(selectedText)
                 .then((data) => {
-                    console.log(data)
                     if (data.length > 0) {
                         correctText = data.map((correct) => {
                             if (correct.s.length > 1) {
