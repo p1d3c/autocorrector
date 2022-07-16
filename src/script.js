@@ -17,7 +17,7 @@ const checkText = (text) => {
     
     const convertedText = convertText(text);
 
-    return fetch('http://speller.yandex.net/services/spellservice.json/checkText?text=' + `${convertedText}`, {
+    return fetch('https://speller.yandex.net/services/spellservice.json/checkText?text=' + `${convertedText}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=UTF-8'
@@ -73,6 +73,7 @@ const getSelectedText = () => {
                 let correctText = [];
                 checkText(selectedText)
                 .then((data) => {
+                    console.log(data)
                     if (data.length > 0) {
                         correctText = data.map((correct) => {
                             if (correct.s.length > 1) {
@@ -80,10 +81,14 @@ const getSelectedText = () => {
                             }
                             return correct.s[0];
                         })
+                        document
+                        .body
+                        .appendChild(createPopup(selectedElementRect, correctText.join(' ')));
+                    } else {
+                        document
+                        .body
+                        .appendChild(createPopup(selectedElementRect, 'Правильно'));
                     }
-                    document
-                    .body
-                    .appendChild(createPopup(selectedElementRect, correctText.join(' ')));
                 })
             }
         }

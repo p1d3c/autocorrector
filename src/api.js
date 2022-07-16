@@ -1,4 +1,4 @@
-const BASE_URL = 'http://speller.yandex.net/services/spellservice.json/checkText?text=';
+const BASE_URL = 'https://speller.yandex.net/services/spellservice.json/checkText?text=';
 
 class Api {
     constructor({ baseUrl, headers }) {
