@@ -1,4 +1,4 @@
-import api from './api.js';
+import api from './src/api.js';
 
 const form = document.querySelector('.form');
 const textArea = document.querySelector('.textarea');
@@ -9,8 +9,6 @@ let changeTimer = false;
 const apiRequest = (text, textArray) => {
     api.checkText(text)
     .then((data) => {
-        console.log(data)
-        console.log(textArray)
         textArray.forEach((incorrect, i) => {
             data.forEach((correct) => {
                 if (re.test(incorrect)) {
