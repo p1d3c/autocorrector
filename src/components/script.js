@@ -1,4 +1,3 @@
-const body = document.querySelector('body');
 let popup = null;
 let timer = false;
 let isSelection = false;
@@ -89,6 +88,11 @@ const getSelectedText = () => {
                         .appendChild(createPopup(selectedElementRect, 'Правильно'));
                     }
                 })
+                .catch((err) => {
+                    document
+                    .body
+                    .appendChild(createPopup(selectedElementRect, `${err}`));
+                })
             }
         }
     }, 400);
@@ -100,11 +104,27 @@ const closePopup = (evt, popup) => {
     popup.remove();
 }
 
-body.addEventListener('click', (evt) => {
+const handleClick = (evt) => {
     const popup = document.querySelector('.corrector_popup');
     if (popup) {
         closePopup(evt, popup);
     }
+}
+
+chrome.storage.local.get(['modal'], (res) => {
+    if (res.modal === true) {
+        document.addEventListener('click', handleClick);
+        
+        document.addEventListener('selectionchange', getSelectedText);
+    }
 })
 
-document.onselectionchange = getSelectedText;
+chrome.storage.onChanged.addListener((changes) => {
+    if (changes.modal.newValue === true) {
+        document.addEventListener('click', handleClick);
+        document.addEventListener('selectionchange', getSelectedText);
+    } else {
+        document.removeEventListener('click', handleClick);
+        document.removeEventListener('selectionchange', getSelectedText);
+    }
+})

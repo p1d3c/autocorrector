@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="html">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./styles/styles.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/pages/popup.css">
 </head>
 
 <body class="root">
-    <p class="title">
-        Проверка правописания: 
-        <a href="http://api.yandex.ru/speller/" class="link" target="_blank">Яндекс.Спеллер</a>
-    </p>
+    <div class="container">
+        <p class="title">
+            Проверка правописания:
+            <a href="http://api.yandex.ru/speller/" class="link" target="_blank">Яндекс.Спеллер</a>
+        </p>
+        <a href="/settings.html" class="settings"></a>
+    </div>
     <form class="form">
         <textarea class="textarea" name="text" cols="30" rows="10" autofocus></textarea>
         <button class="checkbtn">Проверить</button>
     </form>
-    <script type="module" src="popup.js"></script>
-    <script type="module" src="/src/api.js"></script>
+    <script type="module" src="/src/pages/popup.js"></script>
+    <script type="module" src="/src/components/api.js"></script>
 </body>
 
 </html>

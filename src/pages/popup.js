@@ -1,4 +1,4 @@
-import api from './src/api.js';
+import api from '../components/api.js';
 
 const form = document.querySelector('.form');
 const textArea = document.querySelector('.textarea');
