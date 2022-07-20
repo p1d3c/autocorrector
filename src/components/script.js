@@ -30,7 +30,7 @@ const checkText = (text) => {
 
 const fillPopup = (popup, selectedText) => {
     popup.insertAdjacentHTML('afterbegin', `
-        <h2 style="margin: 0; padding: 10px">
+        <h2 style="margin: 0; padding: 5px;">
             ${selectedText}
         </h2>
     `)
@@ -45,13 +45,17 @@ const createPopup = (selectedElementRect, selectedText) => {
         position: fixed;
         top: ${selectedElementRect.bottom + 30}px;
         left: ${selectedElementRect.left - 10}px;
-        height: ${selectedElementRect.height + 20}px;
-        width: ${selectedElementRect.width + 20}px;
         background-color: white;
-        display: flex; 
-        justify-content: center; 
-        align-items: center;
+        background: white;
+        display: inline-block; 
     `;
+
+    // with this styles might be error with text background color
+    // justify-content: center; 
+    // align-items: center;
+    // width: ${selectedElementRect.width + 20}px;
+    // height: ${selectedElementRect.height + 20}px;
+
     fillPopup(popup, selectedText);
     return popup;
 }
@@ -75,7 +79,7 @@ const getSelectedText = () => {
                     if (data.length > 0) {
                         correctText = data.map((correct) => {
                             if (correct.s.length > 1) {
-                                return `(${correct.s.join(' ')})`
+                                return `(${correct.s.join(', ')})`
                             }
                             return correct.s[0];
                         })
@@ -85,7 +89,7 @@ const getSelectedText = () => {
                     } else {
                         document
                         .body
-                        .appendChild(createPopup(selectedElementRect, 'Правильно'));
+                        .appendChild(createPopup(selectedElementRect, 'Ошибок нет'));
                     }
                 })
                 .catch((err) => {
